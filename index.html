@@ -661,7 +661,9 @@
                 <div class="col-lg-7" data-aos="fade-left">
                     <div class="contact-form">
                         <h3 class="mb-4">Send Me a Message</h3>
-                        <form id="contactForm" class="needs-validation" novalidate>
+                        <form id="contactForm" class="needs-validation" action="https://api.web3forms.com/submit" method="POST" novalidate>
+                            <input type="hidden" name="access_key" value="a85a1a09-0ef4-424d-bf1f-fc4389197ab8">
+
                             <div class="mb-3">
                                 <label for="name" class="form-label">Your Name</label>
                                 <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
@@ -726,26 +728,8 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script>
-        // Form validation
-        (function () {
-            'use strict'
-            var forms = document.querySelectorAll('.needs-validation')
-            Array.prototype.slice.call(forms)
-                .forEach(function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        } else {
-                            event.preventDefault()
-                            // Show success message
-                            alert('Thank you for your message! I will get back to you soon.')
-                            form.reset()
-                        }
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-        })()
+        
+       
 
         // Initialize AOS
         AOS.init({
