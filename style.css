@@ -205,14 +205,29 @@ body {
     margin-bottom: 1.5rem;
 }
 
+.hero-btns {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
 .hero-btns .btn {
-    margin-right: 1rem;
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
+    padding: 0.8rem 1.5rem;
     font-weight: 500;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-btns .btn i {
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.hero-btns .btn:hover i {
+    transform: translateY(-2px);
 }
 
 .btn {
@@ -756,7 +771,13 @@ textarea.form-control:focus {
     }
 
     .hero-btns {
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-btns .btn {
+        width: 100%;
+        max-width: 250px;
     }
 
     .hero-image {
