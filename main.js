@@ -19,15 +19,49 @@ const typed = new Typed('.typed-text', {
     loop: true
 });
 
-// Mobile Navigation
-const mobileMenuButton = document.querySelector('.navbar-toggler');
-const mobileMenu = document.querySelector('.navbar-collapse');
-
-if (mobileMenuButton && mobileMenu) {
-    mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('show');
-    });
-}
+// Mobile Navigation - Fixed version
+document.addEventListener('DOMContentLoaded', function() {
+    // Let Bootstrap handle the toggle functionality
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    
+    if (navbarToggler && navbarCollapse) {
+        // Toggle icon between bars and times
+        navbarToggler.addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            if (icon) {
+                if (navbarCollapse.classList.contains('show')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+        
+        // Close menu when clicking on a nav link
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (navbarCollapse.classList.contains('show')) {
+                    // Use Bootstrap's collapse API to hide the menu
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                        toggle: false
+                    });
+                    bsCollapse.hide();
+                    
+                    // Reset icon
+                    const icon = navbarToggler.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+    }
+});
 
 // Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -39,9 +73,25 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth',
                 block: 'start'
             });
+            
             // Close mobile menu if open
-            if (mobileMenu.classList.contains('show')) {
-                mobileMenuButton.click();
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                // Use Bootstrap's collapse API to hide the menu
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                    toggle: false
+                });
+                bsCollapse.hide();
+                
+                // Reset icon
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                if (navbarToggler) {
+                    const icon = navbarToggler.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
             }
         }
     });
